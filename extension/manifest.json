@@ -1,0 +1,25 @@
+{
+  "name": "The Onion Redirector",
+  "version": "0.1.0",
+  "description": "Automatically redirect to .onion domains. Only intended for the Tor Browser.",
+  "homepage_url": "https://github.com/stefansundin/the-onion-redirector",
+  "author": "Stefan Sundin",
+  "icons": {
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "applications": {
+    "gecko": {
+      "id": "the-tor-redirector@firefox.stefansundin.com"
+    }
+  },
+  "manifest_version": 2
+}
