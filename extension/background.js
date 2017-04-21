@@ -111,3 +111,18 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
+
+// https://blog.scryptmail.com/complete-tor-support/
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, "http://scryptmaildniwm6.onion/") };
+  },
+  {
+    urls: [
+      "*://scryptmail.com/*",
+      "*://www.scryptmail.com/*"
+    ],
+    types: ["main_frame"]
+  },
+  ["blocking"]
+);
