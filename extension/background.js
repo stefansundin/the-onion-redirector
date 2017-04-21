@@ -44,23 +44,3 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
-
-// https://kastatus.com/
-chrome.webRequest.onBeforeRequest.addListener(
-  function(details) {
-    return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, "http://lsuzvpko6w6hzpnn.onion/") };
-  },
-  {
-    urls: [
-      "*://*.kat.cr/*",
-      "*://*.kickass.to/*",
-      "*://*.kickassto.co/*",
-      "*://*.kickass.ag/*",
-      "*://*.thekat.tv/*",
-      "*://*.kickass.ac/*",
-      "*://*.katproxy.is/*"
-    ],
-    types: ["main_frame"]
-  },
-  ["blocking"]
-);
