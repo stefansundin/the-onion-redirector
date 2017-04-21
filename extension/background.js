@@ -84,3 +84,15 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
+
+// https://keybase.io/docs/command_line/tor
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, "http://fncuwbiisyh6ak3i.onion/") };
+  },
+  {
+    urls: ["*://*.keybase.io/*"],
+    types: ["main_frame"]
+  },
+  ["blocking"]
+);
