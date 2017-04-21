@@ -1,5 +1,6 @@
 // https://developer.chrome.com/extensions/match_patterns
 
+// https://www.facebookcorewwwi.onion/notes/protect-the-graph/making-connections-to-facebook-more-secure/1526085754298237
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {
     return { redirectUrl: details.url.replace("facebook.com/", "facebookcorewwwi.onion/") };
@@ -11,6 +12,7 @@ chrome.webRequest.onBeforeRequest.addListener(
   ["blocking"]
 );
 
+// bottom of https://thepiratebay.org/
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {
     return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, "http://uj3wazyk5u4hnvtk.onion/") };
