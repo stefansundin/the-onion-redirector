@@ -126,3 +126,19 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
+
+// https://duck.co/forum/thread/1762/is-the-duckduckgo-hidden-service-legitimate
+// https://github.com/duckduckgo/zeroclickinfo-goodies/blob/b9e7ad188885aa22b37c578296afbf270bc44665/t/DuckDuckGo.t#L95-L110
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, "https://3g2upl4pq6kufc4m.onion/") };
+  },
+  {
+    urls: [
+      "*://duckduckgo.com/*",
+      "*://www.duckduckgo.com/*"
+    ],
+    types: ["main_frame"]
+  },
+  ["blocking"]
+);
