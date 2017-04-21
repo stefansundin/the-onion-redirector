@@ -44,3 +44,15 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
+
+// https://protonmail.com/tor
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, "https://protonirockerxow.onion/") };
+  },
+  {
+    urls: ["*://*.protonmail.com/*"],
+    types: ["main_frame"]
+  },
+  ["blocking"]
+);
