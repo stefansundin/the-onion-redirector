@@ -96,3 +96,18 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
+
+// https://www.propublica.org/nerds/item/a-more-secure-and-anonymous-propublica-using-tor-hidden-services
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, "https://www.propub3r6espa33w.onion/") };
+  },
+  {
+    urls: [
+      "*://propublica.org/*",
+      "*://www.propublica.org/*"
+    ],
+    types: ["main_frame"]
+  },
+  ["blocking"]
+);
