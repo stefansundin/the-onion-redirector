@@ -144,3 +144,18 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
+
+// bottom of https://www.qubes-os.org/
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, "http://qubesos4rrrrz6n4.onion/") };
+  },
+  {
+    urls: [
+      "*://qubes-os.org/*",
+      "*://www.qubes-os.org/*"
+    ],
+    types: ["main_frame"]
+  },
+  ["blocking"]
+);
