@@ -56,3 +56,31 @@ chrome.webRequest.onBeforeRequest.addListener(
   },
   ["blocking"]
 );
+
+// https://riseup.net/en/tor#riseups-tor-hidden-services
+// https://riseup.net/security/network-security/tor/hs-addresses-signed.txt
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    var map = {
+      "riseup":  "nzh3fv6jc6jskki3", // this is just riseup.net
+      "www":     "nzh3fv6jc6jskki3",
+      "help":    "nzh3fv6jc6jskki3",
+      "black":   "cwoiopiifrlzcuos",
+      "lists":   "xpgylzydxykgdqyg",
+      "mail":    "zsolxunfmbfuq7wf",
+      "pad":     "5jp7xtmox6jyoqd5",
+      "share":   "6zc6sejeho3fwrd4",
+      "account": "j6uhdvbhz74oefxf",
+      "we":      "7lvd7fa5yfbdqaii",
+    };
+    var subdomain = details.url.match(/^https?:\/\/([a-z]+)\./)[1];
+    if (subdomain in map) {
+      return { redirectUrl: details.url.replace(/^https?:\/\/([a-z0-9\-.]+)\//, `http://${map[subdomain]}.onion/`) };
+    }
+  },
+  {
+    urls: ["*://*.riseup.net/*"],
+    types: ["main_frame"]
+  },
+  ["blocking"]
+);
